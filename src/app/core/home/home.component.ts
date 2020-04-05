@@ -1,4 +1,8 @@
+import { APIService } from './../../Services/api.service';
+import { FooterComponent } from './../../shared/footer/footer.component';
+import { HeaderComponent } from './../../shared/header/header.component';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  array: any=[]
+  object: any;
+  compra:boolean=true;
+  camisetas:string="../../../assets/img/tshirt-min.png";
+  abrigos: string="../../../assets/img/hoodie-min.png";
+  Gorras: string="../../../assets/img/Hat-min.png";
+  Mochilas: string="../../../assets/img/backpack-min.png";
+  Leggings: string="../../../assets/img/Leggings-min.png";
+  Calcetines: string="../../../assets/img/socks-min.png";
+  Franelas: string="../../../assets/img/tank-top-min.png";
+  Relojes:string="../../../assets/img/Watch-min.png";
+  Anillos:string="../../../assets/img/Ring-min.png";
+  imgs:string[]= [this.camisetas,this.abrigos,this.Gorras,this.Mochilas,this.Leggings,this.Calcetines, this.Franelas,this.Relojes,this.Anillos];
 
-  ngOnInit(): void {
+
+  constructor(private serv:APIService) { }
+
+  ngOnInit() {
+
+    this.serv.getStock().subscribe((e:any)=>{
+     
+      this.array=e;
+      
+      console.log(e);
+    })
+
+   // this.imgs.push(this.camisetas,this.abrigos,this.Gorras,this.Mochilas,this.Leggings,this.Calcetines, this.Franelas,this.Relojes,this.Anillos)
   }
+
+  
 
 }

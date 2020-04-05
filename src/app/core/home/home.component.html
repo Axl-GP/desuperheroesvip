@@ -1,1 +1,35 @@
-<p>home works!</p>
+<app-header></app-header>
+<div class="container d-flex justify-content-center ProductSans" style="margin-bottom: 220px;">
+    <div class="row">
+        <div  class="col-md-4 col-lg-4 col-sm-10" *ngFor="let object of array;" >
+      
+<div class="card" style="width: 16rem; margin-top: 30px;" >
+    
+      <img src="{{object.img}}"class="card-img-top" alt="...">
+      
+    
+    <div class="card-body" >
+      <h5 class="card-title">{{object.nombre}}</h5>
+      <p class="card-subtitle">Existencia: {{object.existencia}}</p>
+        </div>
+
+    <div class="card-body" style="margin-top: -15px;" *ngIf="object.existencia>0; else compra" >
+        <a class="btn btn-outline-dark" href="transactions" style="margin-right: 30px;">Agregar</a>
+        <a class="btn btn-outline-dark" href="transactions"style="margin-left: 10px;">Comprar</a>
+    </div>
+            <ng-template  #compra>
+                <a class="btn btn-outline-dark" href="transactions"style="margin-left: 10px;">Agregar</a>
+            </ng-template>
+           
+        
+        
+
+    
+</div>
+  </div>
+</div>
+
+</div>
+
+
+<app-footer></app-footer>

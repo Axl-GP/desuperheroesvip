@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face{
     font-family: 'Product Sans';
-    src: url('./assets/font/ProductSans-Regular.ttf');
+    src: url('./assets/fonts/ProductSans-Regular_7a2a56c145b5d37f87bcdb656af0ddea.ttf');
 }
 .ProductSans{
     font-family: 'Product Sans', sans-serif;
