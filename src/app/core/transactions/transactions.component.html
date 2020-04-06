@@ -30,13 +30,15 @@
 
                     
                             <select class="form-control" formControlName="cliente">
-                                 <option *ngFor="let cliente of nombresClientes" value={{cliente.id}}>{{cliente.nombre}}</option>
+                                <option selected>Seleccione un cliente, por favor. </option>
+                                 <option  *ngFor="let cliente of nombresClientes" value={{cliente.id}}>{{cliente.nombre}}</option>
                             </select>
                    
         
                    
                         <select class="form-control" formControlName="producto" style="margin-top:30px;margin-bottom:30px">
-                             <option *ngFor="let products of nombresProductos" value={{products.id}}>{{products.nombre}}</option>
+                            <option selected>Seleccione su {{productos.nombre}} preferid@s, por favor. </option>
+                             <option selected *ngFor="let products of nombresProductos" value={{products.id}}>{{products.nombre}}</option>
                         </select>
                   
         

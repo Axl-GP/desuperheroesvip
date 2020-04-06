@@ -59,7 +59,7 @@ export class TransactionsComponent implements OnInit {
     //const stockid=this.productos.id;
     const cantidad= this.formularioCompra.value.cantidad;
 
-    const fecha= "2020-04-05";
+    const fecha= new Date();
 
   let factura =  {
 

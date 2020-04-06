@@ -1,1 +1,41 @@
-<p>crud works!</p>
+
+<app-header></app-header>
+
+            <div class="container d-flex justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="card ProductSans col-10">
+                <div class="card-header">
+                        <h3 class="text-center">Productos</h3>
+                </div>
+                <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr class="ProductSans" >
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let producto of productos">
+                    <td>{{producto.id}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>RD${{producto.precio}}.00</td>
+                    <td>
+                        <a class="btn btn-outline-success" (click)="editProduct(producto)" >Editar</a>
+                        <a class="btn btn-outline-danger" (click)="deleteProduct(producto.id)" >Eliminar</a>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+
+            <a class="btn btn-outline-success" href="add-product">¿Quieres añadir un producto?</a>
+            <a class="btn btn-outline-dark" href="inicio">Volver</a>
+            </div>
+            </div>
+        </div>
+
+        
+<app-footer ></app-footer>
+<!-- (click)="editProduct()"
+    (click)="deleteProduct()"-->

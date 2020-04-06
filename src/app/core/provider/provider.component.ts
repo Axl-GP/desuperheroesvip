@@ -52,7 +52,7 @@ export class ProviderComponent implements OnInit {
     //const stockid=this.productos.id;
     const cantidad= this.formularioEntrada.value.cantidad;
 
-    const fecha= "2020-04-05";
+    const fecha= new Date();
 
   let entrada =  {
 
@@ -60,11 +60,11 @@ export class ProviderComponent implements OnInit {
       productoid:productoid,
       proveedorid:proveedorid,
       cantidad:cantidad,
-      fechaFactura:fecha
+      fechaImporte:fecha
     }
     console.log(entrada);
     
-    this.serv.addFactura(entrada).subscribe(()=>{
+    this.serv.addEntradas(entrada).subscribe(()=>{
       console.log("exitoso");
       this.reloadCurrentRoute();
     })

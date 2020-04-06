@@ -1,0 +1,18 @@
+<div class="col-6 ProductSans">
+    <form [formGroup]="editar" >
+  
+      <label class="col-form-label">Nombre: </label>
+      <input type="number" class="form-control" placeholder="Ingrese su numero de telefono." formControlName="nombre">{{producto.nombre}}
+      <label class="col-form-label">Precio: </label>
+      <input type="number" class="form-control" placeholder="Ingrese el precio." formControlName="precio">{{producto.precio}}
+
+      <select class="form-control" formControlName="tipoProducto" *ngFor="let product of array">
+        <option selected>Seleccione un cliente, por favor. </option>
+         <option   value={{product.Stockid}}>{{product.nombre}}</option>
+    </select>
+
+      <br>
+  
+      <button class="btn btn-success btn-group-lg" [disabled]="editar.invalid" (click)="editarProducto()">Enviar</button>
+    </form>
+  </div>
