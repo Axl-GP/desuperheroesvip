@@ -36,7 +36,7 @@ addProduct(product:any){
 }
 
 editProduct(product:any){
-  return this.cliente.put("https://localhost:44329/api/crud/agregar_productos/",product)
+  return this.cliente.put("https://localhost:44329/api/crud/editar_productos/",product)
 }
 
 
@@ -44,6 +44,25 @@ deleteProduct(id:number)
 {
   return this.cliente.delete("https://localhost:44329/api/crud/eliminar_productos/"+id)
 }
+/////////////////PROVEEDORES////////////////
+getProveedores(){
+  return this.cliente.get("https://localhost:44329/api/crud/Obtener_proveedores/")
+}
+
+addProveedor(proveedor:any){
+  return this.cliente.post("https://localhost:44329/api/crud/agregar_proveedores/",proveedor)
+}
+
+editProveedor(proveedor:any){
+  return this.cliente.put("https://localhost:44329/api/crud/editar_proveedores/",proveedor)
+}
+
+
+deleteProveedor(id:number)
+{
+  return this.cliente.delete("https://localhost:44329/api/crud/eliminar_proveedores/"+id)
+}
+
 
 /////////////////CLIENTES/////////////////////////////////////////
 
@@ -59,9 +78,7 @@ addFactura(factura:any){
 
 //////ENTRADAS
 
-getProveedores(){
-  return this.cliente.get("https://localhost:44329/api/crud/Obtener_proveedores/")
-}
+
 addEntradas(entrada:any){
   return this.cliente.post('https://localhost:44329/api/crud/agregar_entrada',entrada);
 }

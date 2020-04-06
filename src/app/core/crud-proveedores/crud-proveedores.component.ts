@@ -3,34 +3,34 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crud',
-  templateUrl: './crud.component.html',
-  styleUrls: ['./crud.component.css']
+  selector: 'app-crud-proveedores',
+  templateUrl: './crud-proveedores.component.html',
+  styleUrls: ['./crud-proveedores.component.css']
 })
-export class CrudComponent implements OnInit {
+export class CrudProveedoresComponent implements OnInit {
 
-  productos:any=[];
+  proveedor:any=[];
   constructor(private serv:APIService, private router:Router) { }
 
   ngOnInit(): void {
-    this.serv.getProductos().subscribe((e:any)=>{
+    this.serv.getProveedores().subscribe((e:any)=>{
      
-      this.productos=e;
+      this.proveedor=e;
       
       console.log(e);
     })
   }
 
-  editProduct(product:any){
+  editProveedor(proveedor:any){
 
-    this.serv.setProduct(product);
+    this.serv.setProduct(proveedor);
     this.router.navigate(['/edit']);
     
 
   }
-  deleteProduct(id:number){
+  deleteProveedor(id:number){
 
-    this.serv.deleteProduct(id).subscribe(()=>{
+    this.serv.deleteProveedor(id).subscribe(()=>{
       console.log("se ha eliminado de forma exitosa")
       this.ngOnInit();
     });

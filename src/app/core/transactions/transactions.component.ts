@@ -73,17 +73,13 @@ export class TransactionsComponent implements OnInit {
     
     this.serv.addFactura(factura).subscribe(()=>{
       console.log("exitoso");
-      this.reloadCurrentRoute();
+      this.ngOnInit();
     })
 
     
     
     
   }
-  reloadCurrentRoute() {
-    let currentUrl = this.router.navigate(["home"]);
-    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-    });
+  
 }
-}
+

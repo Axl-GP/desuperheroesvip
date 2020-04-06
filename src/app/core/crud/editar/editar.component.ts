@@ -1,6 +1,7 @@
 import { APIService } from './../../../Services/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,18 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class EditarComponent implements OnInit {
 
   editar:FormGroup
-  producto:any
+  producto:any;
   array:any;
-  constructor(private serv:APIService, private builder:FormBuilder) {
+  constructor(private serv:APIService, private builder:FormBuilder, private router:Router) {
     this.producto=this.serv.getProduct();
    }
 
   ngOnInit(): void {
-
+    
     this.editar=this.builder.group({
-      nombre:['',Validators.required],
-      precio:[0,Validators.required,Validators.min(0)],
-      stockid:[1,Validators.required]
+      nombre:[this.producto.nombre,[Validators.required]],
+      precio:[this.producto.precio,[Validators.required,Validators.min(1)]],
+      stockid:['',[Validators.required]]
     })
 
     this.serv.getStock().subscribe((e:any)=>{
@@ -35,25 +36,28 @@ export class EditarComponent implements OnInit {
   }
 
   editarProducto(){
+    const id= this.producto.id;
     const nombre=this.editar.value.nombre;
     const precio=this.editar.value.precio;
-    const productoid=Number(this.editar.controls.producto.value);
+    const stockid=Number(this.editar.controls.stockid.value);
 
     let edicion =  {
 
-      
-      productoid:productoid,
+      id:id,
       nombre:nombre,
       precio:precio,
-      Stockid:productoid
+      stockid:stockid
     }
     console.log(edicion);
     
     this.serv.editProduct(edicion).subscribe(()=>{
       console.log("exitoso");
-      //this.reloadCurrentRoute();
+      this.ngOnInit();
+      this.router.navigate(['crud']);
     })
     
   }
-
+  
 }
+
+

@@ -66,18 +66,15 @@ export class ProviderComponent implements OnInit {
     
     this.serv.addEntradas(entrada).subscribe(()=>{
       console.log("exitoso");
-      this.reloadCurrentRoute();
+      this.ngOnInit();
+      this.router.navigate(['home']);
+
     })
 
     
     
     
   }
-  reloadCurrentRoute() {
-    let currentUrl = this.router.navigate(["home"]);
-    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-    });
-}
+ 
 
 }

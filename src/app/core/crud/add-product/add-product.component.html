@@ -1,18 +1,35 @@
-<div class="col-6 ProductSans">
+
+<app-header></app-header>
+<div class="container d-flex justify-content-center ProductSans" style="margin-top: 50px;">
+<div class="col-6 ">
+  <div class="card">
+    <div class="card-header bg-dark">
+      <h3 class="text-center font-weight-bolder text-white">Crear producto</h3>
+    </div>
+    <div class="card-body">
+
+    
     <form [formGroup]="add" >
   
+      <div class="form-group col-md-12">
       <label class="col-form-label">Nombre: </label>
-      <input type="number" class="form-control" placeholder="Ingrese el nombre del producto" formControlName="nombre">
+      <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
       <label class="col-form-label">Precio: </label>
-      <input type="number" class="form-control" placeholder="Ingrese el precio del producto." formControlName="precio">
+      <input type="text" class="form-control" placeholder="Ingrese el precio" formControlName="precio">
 
-      <select class="form-control" formControlName="tipoProducto" *ngFor="let product of array">
-        <option selected>Seleccione un cliente, por favor. </option>
-         <option   value={{product.Stockid}}>{{product.nombre}}</option>
-    </select>
+      <label class="col-form-label">Tipo de producto: </label>
+      <select class="form-control" formControlName="stockid">
+         <option class="list-group" *ngFor="let producto of array"  value={{producto.id}}>{{producto.nombre}}</option>
+      </select>
 
       <br>
   
-      <button class="btn btn-success btn-group-lg" [disabled]="add.invalid" (click)="agregarProducto()">Enviar</button>
+      <button class="btn btn-block btn-dark" [disabled]="add.invalid" (click)="agregarProducto()">Enviar</button>
+
+    </div>
     </form>
   </div>
+</div>
+</div>
+</div>
+<app-footer class="fixed-bottom"></app-footer>
