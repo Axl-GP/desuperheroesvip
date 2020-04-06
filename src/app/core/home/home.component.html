@@ -3,7 +3,7 @@
     <div class="row">
         <div  class="col-md-4 col-lg-4 col-sm-10" *ngFor="let object of array;" >
       
-<div class="card" style="width: 16rem; margin-top: 30px;" >
+<div class="card" style="width: 18rem; margin-top: 30px; margin-left: 30px;" >
     
       <img src="{{object.img}}"class="card-img-top" alt="...">
       
@@ -13,17 +13,13 @@
       <p class="card-subtitle">Existencia: {{object.existencia}}</p>
         </div>
 
-    <div class="card-body" style="margin-top: -15px;" *ngIf="object.existencia>0; else compra" >
-        <a class="btn btn-outline-dark" href="transactions" style="margin-right: 30px;">Agregar</a>
-        <a class="btn btn-outline-dark" href="transactions"style="margin-left: 10px;">Comprar</a>
+    <div class="card-body" style="margin-top: -15px;"  *ngIf="object.existencia>0; else compra" >
+        <a class="btn btn-outline-dark" (click)="setProduct(object)"  style="margin-right: 30px;">Agregar</a>
+        <a class="btn btn-outline-dark" (click)="setProduct(object)"style="margin-left: 10px;">Comprar</a>
     </div>
             <ng-template  #compra>
-                <a class="btn btn-outline-dark" href="transactions"style="margin-left: 10px;">Agregar</a>
+                <a class="btn btn-outline-dark" (click)="setProduct(object)"style="margin-left: 10px;">Agregar</a>
             </ng-template>
-           
-        
-        
-
     
 </div>
   </div>

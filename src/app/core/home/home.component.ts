@@ -2,6 +2,7 @@ import { APIService } from './../../Services/api.service';
 import { FooterComponent } from './../../shared/footer/footer.component';
 import { HeaderComponent } from './../../shared/header/header.component';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,9 @@ export class HomeComponent implements OnInit {
   imgs:string[]= [this.camisetas,this.abrigos,this.Gorras,this.Mochilas,this.Leggings,this.Calcetines, this.Franelas,this.Relojes,this.Anillos];
 
 
-  constructor(private serv:APIService) { }
+  constructor(private serv:APIService, private Router:Router) { 
+    
+  }
 
   ngOnInit() {
 
@@ -37,9 +40,18 @@ export class HomeComponent implements OnInit {
       console.log(e);
     })
 
+    
    // this.imgs.push(this.camisetas,this.abrigos,this.Gorras,this.Mochilas,this.Leggings,this.Calcetines, this.Franelas,this.Relojes,this.Anillos)
   }
 
+  setProduct(product:any){
+
+    this.serv.setProduct(product);
+    this.Router.navigate(['transactions']);
+    
+
+  }
+  
   
 
 }

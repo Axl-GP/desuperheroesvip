@@ -1,1 +1,64 @@
-<p>transactions works!</p>
+
+<app-header></app-header>
+<div class="container d-inline justify-content-center ProductSans" style="width:450px;" >
+    <div class="row">
+        <div class="col-md-4" style="margin-bottom: 220px;">
+            <div class="card" style="width: 18rem; ; margin-left: 30px;" >
+            
+                <img src="{{productos.img}}"class="card-img-top" alt="...">
+
+                        <div class="card-body" >
+                            <h5 class="card-title">{{productos.nombre}}</h5>
+                            <p class="card-subtitle">Existencia: {{productos.existencia}}</p>
+                        </div>
+        
+                        <div class="card-body" style="margin-top: -15px;">
+                            <a class="btn btn-outline-dark" href="provider" style="margin-right: 30px;">Aumentar existencia</a>
+                        </div>
+
+                        
+                </div>
+            
+        </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-title" style="background-color: #2E2E2E;">
+                    <h3 class="card-header text-center text-white" >Generar compra</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formularioCompra" >
+
+                    
+                            <select class="form-control" formControlName="cliente">
+                                 <option *ngFor="let cliente of nombresClientes" value={{cliente.id}}>{{cliente.nombre}}</option>
+                            </select>
+                   
+        
+                   
+                        <select class="form-control" formControlName="producto" style="margin-top:30px;margin-bottom:30px">
+                             <option *ngFor="let products of nombresProductos" value={{products.id}}>{{products.nombre}}</option>
+                        </select>
+                  
+        
+                    <input type="number" class="form-control" formControlName="cantidad" placeholder="Ingrese la cantidad de productos.">
+                    <div class="btn-group" *ngIf="productos.existencia>=this.formularioCompra.value.cantidad then posible else Imposible">
+                        <a class="btn btn-dark text-white" style="margin-top: 15px;" (click)="generarCompra()" >Confirmar</a>
+                        <a class="btn btn-outline-dark" style="margin-top: 15px;" href="home" >Volver</a>
+         
+                    </div>
+                    <ng-template #posible>
+                        <a class="btn btn-dark text-white" style="margin-top: 15px;" (click)="generarCompra()" >Confirmar</a>
+                        <a class="btn btn-outline-dark" style="margin-top: 15px;" href="home" >Volver</a>
+                    </ng-template>
+                    <ng-template #Imposible>
+                        <a class="btn btn-outline-dark" style="margin-top: 15px;" href="home" >Volver</a>
+                    </ng-template>
+                             
+                </form>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+        
+<app-footer ></app-footer>
