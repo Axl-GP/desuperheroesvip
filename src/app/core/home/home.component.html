@@ -14,11 +14,11 @@
         </div>
 
     <div class="card-body" style="margin-top: -15px;"  *ngIf="object.existencia>0; else compra" >
-        <a class="btn btn-outline-dark" (click)="setProduct(object)"  style="margin-right: 30px;">Agregar</a>
-        <a class="btn btn-outline-dark" (click)="setProduct(object)"style="margin-left: 10px;">Comprar</a>
+        <a class="btn btn-outline-dark" (click)="setProductSell(object)"  style="margin-right: 30px;">Agregar</a>
+        <a class="btn btn-outline-dark" (click)="setProductShop(object)"style="margin-left: 10px;">Comprar</a>
     </div>
             <ng-template  #compra>
-                <a class="btn btn-outline-dark" (click)="setProduct(object)"style="margin-left: 10px;">Agregar</a>
+                <a class="btn btn-outline-dark" (click)="setProductSell(object)"style="margin-left: 10px;">Agregar</a>
             </ng-template>
     
 </div>

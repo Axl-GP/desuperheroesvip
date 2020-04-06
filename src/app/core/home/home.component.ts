@@ -44,10 +44,17 @@ export class HomeComponent implements OnInit {
    // this.imgs.push(this.camisetas,this.abrigos,this.Gorras,this.Mochilas,this.Leggings,this.Calcetines, this.Franelas,this.Relojes,this.Anillos)
   }
 
-  setProduct(product:any){
+  setProductShop(product:any){
 
     this.serv.setProduct(product);
     this.Router.navigate(['transactions']);
+    
+
+  }
+  setProductSell(product:any){
+
+    this.serv.setProduct(product);
+    this.Router.navigate(['provider']);
     
 
   }

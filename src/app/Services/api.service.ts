@@ -43,6 +43,12 @@ getCliente(){
 
 addFactura(factura:any){
   return this.cliente.post('https://localhost:44329/api/crud/agregar_factura',factura);
-
 }
+
+//////ENTRADAS
+
+getProveedores(){
+  return this.cliente.get("https://localhost:44329/api/crud/Obtener_proveedores/")
+}
+
 }

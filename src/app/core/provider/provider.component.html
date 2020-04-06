@@ -1,0 +1,52 @@
+
+<app-header></app-header>
+<div class="container d-inline justify-content-center ProductSans" style="width:450px;" >
+    <div class="row">
+        <div class="col-md-4" style="margin-bottom: 220px;">
+            <div class="card" style="width: 18rem; ; margin-left: 30px;" >
+            
+                <img src="{{productos.img}}"class="card-img-top" alt="...">
+
+                        <div class="card-body" >
+                            <h5 class="card-title">{{productos.nombre}}</h5>
+                            <p class="card-subtitle">Existencia: {{productos.existencia}}</p>
+                        </div>
+                </div>
+            
+        </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-title" style="background-color: #2E2E2E;">
+                    <h3 class="card-header text-center text-white" >Generar compra</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formularioEntrada" >
+
+                    
+                            <select class="form-control" formControlName="cliente">
+                                 <option selected *ngFor="let proveedor of nombresProveedores" value={{proveedor.id}}>{{proveedor.nombre}}</option>
+                            </select>
+                   
+        
+                   
+                        <select class="form-control" formControlName="producto" style="margin-top:30px;margin-bottom:30px">
+                             <option selected *ngFor="let products of nombresProductos" value={{products.id}}>{{products.nombre}}</option>
+                        </select>
+                  
+        
+                    <input type="number" class="form-control" formControlName="cantidad" placeholder="Ingrese la cantidad de productos.">
+                    <div class="btn-group">
+                        <a class="btn btn-dark text-white" style="margin-top: 15px;" (click)="generarEntrada()" >Confirmar</a>
+                        <a class="btn btn-outline-dark" style="margin-top: 15px;" href="home" >Volver</a>
+         
+                    </div>
+        
+                             
+                </form>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+        
+<app-footer ></app-footer>
