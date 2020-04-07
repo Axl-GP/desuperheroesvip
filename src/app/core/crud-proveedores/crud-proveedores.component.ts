@@ -24,7 +24,7 @@ export class CrudProveedoresComponent implements OnInit {
   editProveedor(proveedor:any){
 
     this.serv.setProduct(proveedor);
-    this.router.navigate(['/edit']);
+    this.router.navigate(['/edit-proveedor']);
     
 
   }

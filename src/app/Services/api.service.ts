@@ -70,6 +70,18 @@ getCliente(){
   return this.cliente.get("https://localhost:44329/api/crud/Obtener_clientes/")
 }
 
+addCliente(cliente:any){
+  return this.cliente.post("https://localhost:44329/api/crud/crear_clientes/",cliente)
+}
+
+editCliente(cliente:any){
+  return this.cliente.put("https://localhost:44329/api/crud/editar_cliente/",cliente)
+}
+
+deleteCliente(id:number){
+  return this.cliente.delete("https://localhost:44329/api/crud/eliminar_cliente/"+id)
+}
+
 /////FACTURAS
 
 addFactura(factura:any){

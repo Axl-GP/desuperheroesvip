@@ -1,1 +1,37 @@
-<p>agregar-proveedor works!</p>
+
+<app-header></app-header>
+<div class="container d-flex justify-content-center ProductSans" style="margin-top: 50px;">
+<div class="col-6 ">
+  <div class="card">
+    <div class="card-header bg-dark">
+      <h3 class="text-center font-weight-bolder text-white">Crear proveedor</h3>
+    </div>
+    <div class="card-body">
+
+    
+    <form [formGroup]="add" >
+  
+      <div class="form-group col-md-12">
+      <label class="col-form-label">Nombre: </label>
+      <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
+      <label class="col-form-label">Cedula: </label>
+      <input type="number" class="form-control" placeholder="Ingrese su numero de identificacion, sin guiones." formControlName="RNC">
+        
+      <label class="col-form-label">Telefono: </label>
+      <input type="number" class="form-control" placeholder="Ingrese su numero de telefono, sin guiones." formControlName="telefono">
+      <label class="col-form-label">Email: </label>
+      <input type="email" class="form-control" placeholder="Ingrese el correo electronico." formControlName="email"> 
+      
+      <br>
+  
+      <button class="btn btn-block btn-dark"   (click)="agregarProveedor()">Enviar</button>
+
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+<app-footer class="fixed-bottom"></app-footer>
+
+<!--[disabled]="add.invalid ||add.touched ||add.dirty"-->

@@ -13,53 +13,45 @@ export class EditarProveedorComponent implements OnInit {
   editar:FormGroup
   proveedor:any;
   array:any;
-  constructor(private serv:APIService, private builder:FormBuilder, private router:Router) {
-    this.proveedor=this.serv.getProduct();
-   }
+  constructor(private serv:APIService,private builder:FormBuilder, private router:Router) { 
+    this.proveedor=serv.getProduct();
+  }
 
   ngOnInit(): void {
-    
     this.editar=this.builder.group({
-      nombre:[this.proveedor.nombre,[Validators.required]],
-      precio:[this.proveedor.precio,[Validators.required,Validators.min(1)]],
-      stockid:['']
+      nombre:[this.proveedor.nombre,[Validators.required,Validators.minLength(3),Validators.maxLength(60)]],
+      RNC:[this.proveedor.rnc,[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+      telefono:[this.proveedor.telefono,[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      email:[this.proveedor.email,[Validators.required,Validators.email]]
+    
     })
 
-    this.serv.getProveedores().subscribe((e:any)=>{
-     
-      this.array=e;
-      
-      console.log(e);
-    })
+
 
   }
-
-  editarProveedor(){
-    const id= this.proveedor.id;
+  editProveedor(){
+    
     const nombre=this.editar.value.nombre;
-    const precio=this.editar.value.precio;
-   
-
-    let edicion =  {
-
-      id:id,
-      nombre:nombre,
-      precio:precio,
-      
-    }
-    console.log(edicion);
+    const RNC=String(this.editar.value.RNC);
+    const telefono= String(this.editar.value.telefono);
+    const email=this.editar.value.email;
     
-    this.serv.editProduct(edicion).subscribe(()=>{
-      console.log("exitoso");
-      this.reloadCurrentRoute();
+    let agregar=  {
+      id:this.proveedor.id,
+      nombre:nombre,
+      rnc:RNC,
+      telefono:telefono,
+      email:email,
+    }
+    console.log(agregar);
+    
+    this.serv.editProveedor(agregar).subscribe(()=>{
+      console.log("editar exitoso");
+      this.ngOnInit();
+      this.router.navigate(['home']);
+      //this.reloadCurrentRoute();
     })
     
   }
-  reloadCurrentRoute() {
-    let currentUrl = this.router.navigate(["home"]);
-    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-    });
-}
 
 }

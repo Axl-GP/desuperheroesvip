@@ -4,11 +4,11 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-agregar-proveedor',
-  templateUrl: './agregar-proveedor.component.html',
-  styleUrls: ['./agregar-proveedor.component.css']
+  selector: 'app-add-cliente',
+  templateUrl: './add-cliente.component.html',
+  styleUrls: ['./add-cliente.component.css']
 })
-export class AgregarProveedorComponent implements OnInit {
+export class AddClienteComponent implements OnInit {
 
   add:FormGroup;
   array:any;
@@ -17,32 +17,36 @@ export class AgregarProveedorComponent implements OnInit {
   ngOnInit(): void {
     this.add=this.builder.group({
       nombre:['',[Validators.required,Validators.minLength(3),Validators.maxLength(60)]],
-      RNC:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
-      telefono:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
-      email:['',[Validators.required,Validators.email]]
+      RNC:['',[Validators.required,Validators.minLength(13),Validators.maxLength(13)]],
+      telefono:['',[Validators.required,Validators.minLength(1),Validators.maxLength(12)]],
+      email:['',[Validators.required,Validators.email]],
+      categoria:['',[Validators.required]]
+
     
     })
 
 
 
   }
-  agregarProveedor(){
+  agregarCliente(){
     
     const nombre=this.add.value.nombre;
-    const RNC=String(this.add.value.RNC);
-    const telefono= String(this.add.value.telefono);
+    const RNC=this.add.value.RNC;
+    const telefono=this.add.value.telefono;
     const email=this.add.value.email;
+    const categoria=this.add.controls.categoria.value;
     
     let agregar=  {
 
       nombre:nombre,
-      rnc:RNC,
+      RNC:RNC,
       telefono:telefono,
       email:email,
+      categoria:categoria
     }
     console.log(agregar);
     
-    this.serv.addProveedor(agregar).subscribe(()=>{
+    this.serv.addCliente(agregar).subscribe(()=>{
       console.log("agregar exitoso");
       this.ngOnInit();
       this.router.navigate(['home']);

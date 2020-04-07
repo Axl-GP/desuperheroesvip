@@ -4,7 +4,7 @@
 <div class="container d-flex justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
 <div class="card ProductSans col-10">
     <div class="card-header bg-dark">
-            <h3 class="text-center font-weight-bolder text-white">Proveedores</h3>
+            <h3 class="text-center font-weight-bolder text-white">Clientes</h3>
     </div>
     <div class="card-body">
 <table class="table">
@@ -15,6 +15,7 @@
         <th scope="col">Cedula</th>
         <th scope="col">Telefono</th>
         <th scope="col">Email</th>
+        <th scope="col">Categoria</th>
     </tr>
     </thead>
     <tbody>
@@ -24,16 +25,17 @@
         <td>{{object.rnc}}</td>
         <td>{{object.telefono}}</td>
         <td>{{object.email}}</td>
+        <td>{{object.categoria}}</td>
          <td>
-            <a class="btn btn-outline-success" (click)="editProveedor(object)" >Editar</a>
-            <a class="btn btn-outline-danger" (click)="deleteProveedor(object.id)" >Eliminar</a>
+            <a class="btn btn-outline-success" (click)="editCliente(object)" >Editar</a>
+            <a class="btn btn-outline-danger" (click)="deleteCliente(object.id)" >Eliminar</a>
         </td>
     </tr>
     
     </tbody>
 </table>
 
-<a class="btn btn-outline-success" href="add-proveedor">¿Quieres ser un proveedor?</a>
+<a class="btn btn-outline-success" href="add-cliente">¿Quieres ser un proveedor?</a>
 <a class="btn btn-outline-dark" href="inicio">Volver</a>
 </div>
 </div>
