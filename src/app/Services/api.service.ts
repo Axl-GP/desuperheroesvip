@@ -71,7 +71,7 @@ getCliente(){
 }
 
 addCliente(cliente:any){
-  return this.cliente.post("https://localhost:44329/api/crud/crear_clientes/",cliente)
+  return this.cliente.post("https://localhost:44329/api/crud/agregar_clientes/",cliente)
 }
 
 editCliente(cliente:any){

@@ -1,32 +1,40 @@
+
 <app-header></app-header>
 <div class="container d-flex justify-content-center ProductSans" style="margin-top: 50px;">
 <div class="col-6 ">
   <div class="card">
     <div class="card-header bg-dark">
-      <h3 class="text-center font-weight-bolder text-white">Editar producto</h3>
+      <h3 class="text-center font-weight-bolder text-white">Editar cliente</h3>
     </div>
     <div class="card-body">
 
     
     <form [formGroup]="editar" >
   
-     
       <div class="form-group col-md-12">
-
-        <label class="col-form-label">Nombre: </label>
-        <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
-        <label class="col-form-label">Precio: </label>
-        <input type="text" class="form-control" placeholder="Ingrese el precio" formControlName="precio">
-  
-      <label class="col-form-label">Tipo de producto: </label>
-      <select class="form-control" formControlName="stockid" >
-         <option style="width: 100px;" *ngFor="let product of array"  value={{product.id}}>{{product.nombre}}</option>
-      </select>
-    
-
+      <label class="col-form-label">Nombre: </label>
+      <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
+      <label class="col-form-label">Cedula: </label>
+      <input type="number" class="form-control" placeholder="Ingrese su numero de identificacion, sin guiones." formControlName="RNC">
+        
+      <label class="col-form-label">Telefono: </label>
+      <input type="number" class="form-control" placeholder="Ingrese su numero de telefono, sin guiones." formControlName="telefono">
+      <label class="col-form-label">Email: </label>
+      <input type="email" class="form-control" placeholder="Ingrese el correo electronico." formControlName="email"> 
+      
+      <div class="custom-control custom-radio custom-control-inline"  style="margin-top: 10px;">
+        <input type="radio" id="customRadioInline1" formControlName="categoria" value="Regular" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline1">Regular</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" formControlName="categoria" value="Premium" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline2">Premium</label>
+      </div>
+      
       <br>
   
-      <button class="btn btn-block btn-dark" [disabled]="editar.invalid" (click)="editarCliente()">Confirmar</button>
+      <button class="btn btn-block btn-dark" style="margin-top:15px;"[disabled]="!editar.valid"   (click)="editarCliente()">Enviar</button>
+
     </div>
     </form>
   </div>

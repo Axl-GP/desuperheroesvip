@@ -17,8 +17,8 @@ export class AddClienteComponent implements OnInit {
   ngOnInit(): void {
     this.add=this.builder.group({
       nombre:['',[Validators.required,Validators.minLength(3),Validators.maxLength(60)]],
-      RNC:['',[Validators.required,Validators.minLength(13),Validators.maxLength(13)]],
-      telefono:['',[Validators.required,Validators.minLength(1),Validators.maxLength(12)]],
+      RNC:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+      telefono:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
       email:['',[Validators.required,Validators.email]],
       categoria:['',[Validators.required]]
 
@@ -31,8 +31,8 @@ export class AddClienteComponent implements OnInit {
   agregarCliente(){
     
     const nombre=this.add.value.nombre;
-    const RNC=this.add.value.RNC;
-    const telefono=this.add.value.telefono;
+    const RNC=String(this.add.value.RNC);
+    const telefono=String(this.add.value.telefono);
     const email=this.add.value.email;
     const categoria=this.add.controls.categoria.value;
     

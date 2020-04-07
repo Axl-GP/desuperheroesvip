@@ -15,24 +15,25 @@
       <label class="col-form-label">Nombre: </label>
       <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
       <label class="col-form-label">Cedula: </label>
-      <input type="text" class="form-control" placeholder="Ingrese su numero de identificacion, incluye guiones." formControlName="RNC">
+      <input type="number" class="form-control" placeholder="Ingrese su numero de identificacion, sin guiones." formControlName="RNC">
         
       <label class="col-form-label">Telefono: </label>
-      <input type="number" class="form-control" placeholder="Ingrese su numero de telefono, incluye guiones." formControlName="telefono">
+      <input type="number" class="form-control" placeholder="Ingrese su numero de telefono, sin guiones." formControlName="telefono">
       <label class="col-form-label">Email: </label>
       <input type="email" class="form-control" placeholder="Ingrese el correo electronico." formControlName="email"> 
-      <div class="custom-control custom-radio custom-control-inline" formControlName="categoria" style="margin-top: 10px;">
-        <input type="radio" id="customRadioInline1" name="customRadioInline1" value="Regular" class="custom-control-input">
+      
+      <div class="custom-control custom-radio custom-control-inline"  style="margin-top: 10px;">
+        <input type="radio" id="customRadioInline1" formControlName="categoria" value="Regular" class="custom-control-input">
         <label class="custom-control-label" for="customRadioInline1">Regular</label>
       </div>
       <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline2" name="customRadioInline1" value="Premium" class="custom-control-input">
+        <input type="radio" id="customRadioInline2" formControlName="categoria" value="Premium" class="custom-control-input">
         <label class="custom-control-label" for="customRadioInline2">Premium</label>
       </div>
       
       <br>
   
-      <button class="btn btn-block btn-dark" style="margin-top:15px;"   (click)="agregarCliente()">Enviar</button>
+      <button class="btn btn-block btn-dark" style="margin-top:15px;"[disabled]="!add.valid"   (click)="agregarCliente()">Enviar</button>
 
     </div>
     </form>
@@ -40,4 +41,4 @@
 </div>
 </div>
 </div>
-<app-footer></app-footer>
+<app-footer class="fixed-bottom"></app-footer>

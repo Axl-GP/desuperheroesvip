@@ -24,7 +24,7 @@
       
       <br>
   
-      <button class="btn btn-block btn-dark"   (click)="agregarProveedor()">Enviar</button>
+      <button class="btn btn-block btn-dark" [disabled]="!add.valid"  (click)="agregarProveedor()">Enviar</button>
 
     </div>
     </form>
@@ -34,4 +34,4 @@
 </div>
 <app-footer class="fixed-bottom"></app-footer>
 
-<!--[disabled]="add.invalid ||add.touched ||add.dirty"-->
+<!---->
