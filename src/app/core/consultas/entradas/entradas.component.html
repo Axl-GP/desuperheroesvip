@@ -1,0 +1,83 @@
+
+
+
+<div class="container d-flex justify-content-center ProductSans" style="margin-top: 50px; margin-bottom: 50px;" id="imprimir">
+    <div class="row">
+
+    
+<div class="card ">
+    <div class="card-header bg-dark">
+            <h3 class="text-center font-weight-bolder text-white">Entradas</h3>
+    </div>
+    <div class="card-body">
+
+        <input class="form-control" type="text" name="search" [(ngModel)]="busqueda"
+         autocomplete="off" placeholder="Introduzca el campo que desea filtrar">
+         <table class="table">
+            <thead>
+            <tr class="ProductSans" >
+                <th scope="col">Proveedor</th>
+                <th scope="col">Producto</th>
+                <th scope="col">cantidad</th>
+                <th scope="col">Fecha de importe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let producto of productos|filter:busqueda">
+                <td>{{producto.proveedor.nombre}}</td>
+                <td>{{producto.producto.nombre}}</td>
+                <td>{{producto.cantidad}}</td>
+                <td>{{producto.fechaImporte}}</td> 
+            </tr>
+            
+            </tbody>
+        </table>
+<div class="btn-group" style="margin-bottom: 15px;">
+
+<a class="btn btn-outline-dark" href="home" >Volver</a>
+
+<form [formGroup]="filtro" style="margin-bottom: 15px;margin-top: -10px;">
+    <div class="custom-control custom-radio custom-control-inline"  style="margin-top: 10px;">
+        <input type="radio" id="customRadioInline3" formControlName="filtro" value="suma" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline3">Suma</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline4" formControlName="filtro" value="conteo"class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline4">Conteo</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline5" formControlName="filtro" value="promedio"class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline5">promedio</label>
+      </div>
+    </form>
+
+<a class="btn btn-outline-dark" (click)="decision()" >Filtrar</a>
+<a class="btn btn-outline-danger" (click)="capturar()">Imprimir</a>
+
+
+</div>
+                </div>
+
+                
+            </div>
+           
+        </div>
+        <div class="col-sm-4" style="margin-left: 10px;">
+            <div class="card">
+                <div class="card-header bg-dark">
+                    <h4 class="text-center text-white font-weight-bolder">Resultado filtrado</h4>
+                </div>
+                <div class="card-body">
+                    <h5>{{sumatoria}}</h5>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+<!-- (click)="editProduct()"
+(click)="deleteProduct()"-->

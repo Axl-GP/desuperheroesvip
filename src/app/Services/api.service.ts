@@ -88,11 +88,82 @@ addFactura(factura:any){
   return this.cliente.post('https://localhost:44329/api/crud/agregar_factura',factura);
 }
 
+getFactura(){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_facturacion');
+}
+getFacturaFecha(fecha:Date){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_facturacion_fecha/'+fecha);
+}
+getFacturaFechaFiltro(fecha:Date,filtro:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_facturacion_fecha/'+fecha+'&&'+filtro);
+}
+
+getFacturaCliente(cliente:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_facturacion_fecha/'+cliente);
+}
+getFacturaClienteFiltro(cliente:string,filtro:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_facturacion_cliente/'+cliente+'&&'+filtro);
+}
 //////ENTRADAS
 
 
 addEntradas(entrada:any){
   return this.cliente.post('https://localhost:44329/api/crud/agregar_entrada',entrada);
+}
+getEntrada(){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada');
+
+}
+
+getEntradaFecha(fecha:Date){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_fecha/'+fecha);
+}
+getEntradaFechaFiltro(fecha:Date,filtro:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_fecha/'+fecha+'&&'+filtro);
+}
+
+getEntradaProducto(producto:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_producto/'+producto);
+}
+getEntradaProductoFiltro(producto:string,filtro:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_producto/'+producto+'&&'+filtro);
+}
+
+getEntradaProveedor(proveedor:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_proveedor/'+proveedor);
+}
+getEntradaProveedorFiltro(proveedor:string,filtro:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_proveedor_filtro/'+proveedor+'&&'+filtro);
+}
+
+
+/////CONSULTAS
+
+
+/////CLIENTES
+getClientesNombre(nombre:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_clientes_nombre/'+nombre);
+}
+
+getClientesCategoria(categoria:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_clientes_categoria/'+categoria);
+}
+getClientesCategoriaFiltro(categoria:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_clientes_categoria_filtro/'+categoria);
+}
+/////PRODUCTOS
+getProductosNombre(producto:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_productos_nombre/'+producto);
+}
+
+
+///PROVEEDORES
+
+getProveedoresNombre(nombre:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_proveedores_nombre/'+nombre);
+}
+getProveedoresEmail(email:string){
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_proveedores_email/'+email);
 }
 
 }

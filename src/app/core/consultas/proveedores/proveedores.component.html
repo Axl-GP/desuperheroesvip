@@ -1,12 +1,18 @@
 
-<app-header></app-header>
 
-<div class="container d-flex justify-content-center" style="margin-top: 50px; margin-bottom: 50px;">
-<div class="card ProductSans col-10">
+
+<div class="container d-flex justify-content-center ProductSans" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="row">
+
+    
+<div class="card ">
     <div class="card-header bg-dark">
-            <h3 class="text-center font-weight-bolder text-white">Clientes</h3>
+            <h3 class="text-center font-weight-bolder text-white">Proveedores</h3>
     </div>
     <div class="card-body">
+
+        <input class="form-control" type="text" name="search" [(ngModel)]="busqueda"
+         autocomplete="off" placeholder="Introduzca el campo que desea filtrar">
 <table class="table">
     <thead>
     <tr class="ProductSans" >
@@ -19,29 +25,40 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let object of proveedor">
+    <tr *ngFor="let object of proveedor | filter:busqueda">
         <td>{{object.id}}</td>
         <td>{{object.nombre}}</td>
         <td>{{object.rnc}}</td>
         <td>{{object.telefono}}</td>
         <td>{{object.email}}</td>
         <td>{{object.categoria}}</td>
-         <td>
-            <a class="btn btn-outline-success" (click)="editCliente(object)" >Editar</a>
-            <a class="btn btn-outline-danger" (click)="deleteCliente(object.id)" >Eliminar</a>
-        </td>
+        
     </tr>
     
     </tbody>
 </table>
 
-<a class="btn btn-outline-success" href="add-cliente">¿Quieres ser uno de nosotros?</a>
-<a class="btn btn-outline-dark" href="home">Volver</a>
+    
+
+
+
+
+
+<div class="btn-group" style="margin-bottom: 15px;">
+
+<a class="btn btn-outline-dark" href="home" >Volver</a>
+
 </div>
-</div>
+                </div>
+            </div>
+        </div>
+        
+        
 </div>
 
 
-<app-footer class="fixed-bottom"></app-footer>
+
+
+
 <!-- (click)="editProduct()"
 (click)="deleteProduct()"-->

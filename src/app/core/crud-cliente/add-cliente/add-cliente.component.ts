@@ -47,7 +47,7 @@ export class AddClienteComponent implements OnInit {
     console.log(agregar);
     
     this.serv.addCliente(agregar).subscribe(()=>{
-      console.log("agregar exitoso");
+      //console.log("agregar exitoso");
       this.ngOnInit();
       this.router.navigate(['home']);
       //this.reloadCurrentRoute();

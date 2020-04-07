@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { APIService } from './../../Services/api.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultasComponent implements OnInit {
 
-  constructor() { }
+  tipo:FormGroup
+  consulta:FormGroup
+  constructor(private serv:APIService, private router:Router, private builder:FormBuilder) { }
 
   ngOnInit(): void {
   }
