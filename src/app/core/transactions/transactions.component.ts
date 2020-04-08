@@ -78,7 +78,9 @@ export class TransactionsComponent implements OnInit {
     this.serv.addFactura(factura).subscribe(()=>{
       console.log("exitoso");
       this.ngOnInit();
+      this.router.navigate(['home']);
     })
+    
 
     
     

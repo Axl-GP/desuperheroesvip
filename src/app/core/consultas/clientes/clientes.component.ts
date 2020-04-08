@@ -17,6 +17,7 @@ export class ClientesComponent implements OnInit {
 
   proveedor:any=[];
   sumatoria:any;
+  cargando: boolean= false;
   busqueda;
   categoria:FormGroup;
   constructor(private serv:APIService, private builder:FormBuilder) { }
@@ -53,11 +54,14 @@ export class ClientesComponent implements OnInit {
     });
   }
   capturar(){
+    this.cargando=true;
     htmlToImage.toPng(document.getElementById('cliente'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
       pdf.addImage(dataUrl,'png',-1,0,20.0,11.0);
       pdf.save("cliente.pdf")
+    }).finally(()=>{
+      this.cargando = false;
     })
   }
  /* conteo(){

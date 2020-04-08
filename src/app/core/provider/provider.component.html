@@ -22,14 +22,14 @@
             <div class="card-body">
                 <form [formGroup]="formularioEntrada" >
 
-                    
+                    <label class="col-form-label">Cliente</label>
                             <select class="form-control" formControlName="cliente">
                                  <option selected *ngFor="let proveedor of nombresProveedores" value={{proveedor.id}}>{{proveedor.nombre}}</option>
                             </select>
                    
         
-                   
-                        <select class="form-control" formControlName="producto" style="margin-top:30px;margin-bottom:30px">
+                            <label class="col-form-label">Tipo de producto</label>
+                        <select class="form-control" formControlName="producto" style="margin-bottom:30px">
                              <option selected *ngFor="let products of nombresProductos" value={{products.id}}>{{products.nombre}}</option>
                         </select>
                   

@@ -47,7 +47,12 @@
 <div class="btn-group" style="margin-bottom: 15px;">
 
 <a class="btn btn-outline-dark" href="home" >Volver</a>
-<a class="btn btn-outline-danger" (click)="capturar()" >Imprimir</a>
+<a class="btn btn-outline-danger" (click)="capturar()" *ngIf="!cargando">Imprimir</a>
+<div *ngIf="cargando">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>
 
 </div>
                 </div>

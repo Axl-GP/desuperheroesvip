@@ -12,6 +12,7 @@ import * as jspdf from 'jspdf';
 export class ProveedoresComponent implements OnInit {
 
   proveedor:any;
+  cargando: boolean= false;
   busqueda;
   constructor(private serv:APIService,private router:Router) { }
 
@@ -26,11 +27,14 @@ export class ProveedoresComponent implements OnInit {
     })
   }
   capturar(){
+    this.cargando=true;
     htmlToImage.toPng(document.getElementById('proveedor'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
       pdf.addImage(dataUrl,'png',-3,0,25.0,15.0);
       pdf.save("proveedor.pdf")
+    }).finally(()=>{
+      this.cargando = false;
     })
   }
 

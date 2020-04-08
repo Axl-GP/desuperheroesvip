@@ -17,6 +17,7 @@ export class FacturasComponent implements OnInit {
   sumatoria:any;
   filtro:FormGroup;
   entrada:FormGroup;
+  cargando: boolean= false;
   valor:any;
   search:FormGroup
   busqueda;
@@ -44,11 +45,14 @@ export class FacturasComponent implements OnInit {
   }
 
   capturar(){
+    this.cargando=true;
     htmlToImage.toPng(document.getElementById('factura'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
       pdf.addImage(dataUrl,'png',0,0,18.0,18.0);
       pdf.save("factura.pdf")
+    }).finally(()=>{
+      this.cargando = false;
     })
   }
 
