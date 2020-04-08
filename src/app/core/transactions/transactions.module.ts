@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
+import { RegistroFacturaComponent } from './registro-factura/registro-factura.component';
 
 
 
 @NgModule({
-  declarations: [TransactionsComponent],
+  declarations: [TransactionsComponent, RegistroFacturaComponent],
   imports: [
     CommonModule,
     TransactionsRoutingModule,
