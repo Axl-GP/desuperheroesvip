@@ -10,9 +10,10 @@
             <h3 class="text-center font-weight-bolder text-white">Facturas</h3>
     </div>
     <div class="card-body">
-
-        <input class="form-control" type="text" name="search" [(ngModel)]="busqueda"
+      <form [formGroup]="search">
+        <input class="form-control" type="text" formControlName="search"
          autocomplete="off" placeholder="Introduzca el campo que desea filtrar">
+        </form>
          <table class="table">
             <thead>
             <tr class="ProductSans" >
@@ -23,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let producto of productos|filter:busqueda">
+            <tr *ngFor="let producto of productos|filter:search.get('search').value">
                 <td>{{producto.cliente.nombre}}</td>
                 <td>{{producto.total}}</td>
                 <td>{{producto.cantidad}}</td>

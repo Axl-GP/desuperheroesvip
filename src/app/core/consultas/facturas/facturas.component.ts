@@ -18,6 +18,7 @@ export class FacturasComponent implements OnInit {
   filtro:FormGroup;
   entrada:FormGroup;
   valor:any;
+  search:FormGroup
   busqueda;
   constructor(private serv:APIService, private router:Router, private builder:FormBuilder) { }
 
@@ -36,6 +37,10 @@ export class FacturasComponent implements OnInit {
       proveedor:[''],
       producto:['']
     })
+
+    this.search=this.builder.group({
+      search:['']
+    })
   }
 
   capturar(){
@@ -50,10 +55,24 @@ export class FacturasComponent implements OnInit {
   decision(){
     const filtro=this.filtro.controls.filtro.value;
 
-    var filtrado=filtro;
 
-    
-     if(this.busqueda.value==this.productos.nombre){
+    var filtrado=filtro;
+    let busqueda= this.search.get("search").value;
+    let nombres;
+    let proveedores;
+    let fechas;
+
+    for(let i = 0; i<this.productos.length; i++)
+    {
+      if(busqueda == this.productos[i].cliente.nombre)
+      {
+        nombres = this.productos[i].cliente.nombre;
+      }else if(busqueda == this.productos[i].fecha)
+      {
+        fechas = this.productos[i].fecha;
+      }
+    }
+     if(nombres==busqueda){
 
       if(filtrado=="suma"){
         this.sumaCliente(filtrado);
@@ -69,7 +88,7 @@ export class FacturasComponent implements OnInit {
       }else if(filtrado=="minimo"){
         this.minimoCliente(filtrado);
       }
-    }else if(this.busqueda.value==this.productos.fecha){
+    }else if(fechas==busqueda){
       if(filtrado=="suma"){
         this.sumaFecha(filtrado);
       }else if(filtrado=="conteo"){
@@ -89,7 +108,7 @@ export class FacturasComponent implements OnInit {
   }
 
               sumaCliente(filtro:string){
-                this.serv.getFacturaClienteFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+                this.serv.getFacturaClienteFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
                 this.sumatoria=e;
                 console.log(e);
                 });
@@ -97,7 +116,7 @@ export class FacturasComponent implements OnInit {
             }
 
             sumaFecha(filtro:string){
-              this.serv.getFacturaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getFacturaFechaFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
@@ -107,13 +126,13 @@ export class FacturasComponent implements OnInit {
 
 
             promedioCliente(filtrado){
-            this.serv.getFacturaClienteFiltro(this.busqueda,filtrado).subscribe((e:any)=>{
+            this.serv.getFacturaClienteFiltro(this.search.get('search').value,filtrado).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             promedioFecha(filtrado){
-            this.serv.getFacturaFechaFiltro(this.busqueda,filtrado).subscribe((e:any)=>{
+            this.serv.getFacturaFechaFiltro(this.search.get('search').value,filtrado).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
@@ -121,39 +140,39 @@ export class FacturasComponent implements OnInit {
            
 
             conteoCliente(filtro:string){
-            this.serv.getFacturaClienteFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+            this.serv.getFacturaClienteFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             conteoFecha(filtro:string){
-            this.serv.getFacturaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+            this.serv.getFacturaFechaFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
           
             minimoCliente(filtro:string){
-              this.serv.getFacturaClienteFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getFacturaClienteFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
               }
               minimoFecha(filtro:string){
-              this.serv.getFacturaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getFacturaFechaFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
               }
           
               maximoCliente(filtro:string){
-                this.serv.getFacturaClienteFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+                this.serv.getFacturaClienteFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
                 this.sumatoria=e;
                 console.log(e);
                 });
                 }
                 maximoFecha(filtro:string){
-                this.serv.getFacturaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+                this.serv.getFacturaFechaFiltro(this.search.get('search').value,filtro).subscribe((e:any)=>{
                 this.sumatoria=e;
                 console.log(e);
                 });

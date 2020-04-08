@@ -45,6 +45,10 @@ export class TransactionsComponent implements OnInit {
    
   }
 
+  AumentarExistencia(){
+    this.serv.setProduct(this.productos);
+    this.router.navigate(['/provider']);
+  }
 
  
   

@@ -14,6 +14,7 @@ export class EntradasComponent implements OnInit {
 
   productos:any;
   sumatoria:any;
+  cargando: boolean= false;
   filtro:FormGroup;
   entrada:FormGroup;
   producto:any;
@@ -21,12 +22,15 @@ export class EntradasComponent implements OnInit {
   proveedor:any;
   valor:any;
   dataFiltrada=[];
-  busqueda;
+  busqueda:any;
+  search:FormGroup;
   constructor(private serv:APIService, private router:Router, private builder:FormBuilder) { }
 
   ngOnInit(): void {
     
-
+    this.search = this.builder.group({
+      search:[''],
+    })
     this.filtro=this.builder.group({
       filtro:['']
     })
@@ -34,6 +38,7 @@ export class EntradasComponent implements OnInit {
       proveedor:[''],
       producto:['']
     })
+    this.obtenerProductos();
   }
 
   obtenerProductos(){
@@ -46,11 +51,14 @@ export class EntradasComponent implements OnInit {
   }
 
   capturar(){
+    this.cargando=true;
     htmlToImage.toPng(document.getElementById('entrada'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
       pdf.addImage(dataUrl,'png',0,0,18.0,18.0);
       pdf.save("entrada.pdf")
+    }).finally(()=>{
+      this.cargando = false;
     })
   }
 
@@ -59,47 +67,37 @@ export class EntradasComponent implements OnInit {
 
 
     var filtrado=filtro;
+    let busqueda= this.search.get("search").value;
+    let nombres;
+    let proveedores;
+    let fechas;
 
-    //let traerDatoEspecifico;
+    for(let i = 0; i<this.productos.length; i++)
+    {
+      if(busqueda == this.productos[i].producto.nombre)
+      {
+        nombres = this.productos[i].producto.nombre;
+      }else if(busqueda == this.productos[i].proveedor.nombre)
+      {
+        proveedores = this.productos[i].proveedor.nombre;
+      }else if(busqueda == this.productos[i].fechaImporte)
+      {
+        fechas = this.productos[i].fechaImporte;
+      }
+    }
 
-    
-   
-       /* for(var i=0;i<this.productos; i++){
-          if(this.busqueda.value == this.productos[i].nombre)
-          {
-            this.dataFiltrada.push(this.productos[i].nombre);
-            console.log(this.dataFiltrada);
-              //traerDatoEspecifico =this.productos[i].nombre;
-
-            }
-            this.dataFiltrada.push(this.productos[i].nombre);
-            console.log(this.dataFiltrada);
-           
-            console.log(this.productos);
-          
-          
-          //console.log(this.productos[elem]);
-          
-          }
-    
-    console.log(this.busqueda);
-    console.log(traerDatoEspecifico);
-    console.log(this.productos);
-   
-*/
-    if(this.busqueda.value=="Gorra Thor"){
+    if(nombres == busqueda)
+    {
       if(filtrado=="suma"){
         this.sumaProducto(filtrado);
+        console.log(nombres);
       }else if(filtrado=="conteo"){
         
         this.conteoProducto(filtrado);
       }else if(filtrado=="promedio"){
         this.promedioProducto(filtrado);
       }
-    
-    } if(this.busqueda.value==this.productos.proveedor){
-
-
+    }else if(proveedores==busqueda){
       if(filtrado=="suma"){
         this.sumaProveedor(filtrado);
       }else if(filtrado=="conteo"){
@@ -108,7 +106,7 @@ export class EntradasComponent implements OnInit {
       }else if(filtrado=="promedio"){
         this.promedioProveedor(filtrado);
       } 
-    } if(this.busqueda.value==this.productos.fechaImporte){
+    } else if(fechas==busqueda){
       
       if(filtrado=="suma"){
         this.sumaFecha(filtrado);
@@ -126,21 +124,23 @@ export class EntradasComponent implements OnInit {
               
 
               sumaProducto(filtro:string){
-                this.serv.getEntradaProductoFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+                this.serv.getEntradaProductoFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
+                  
                 this.sumatoria=e;
                 console.log(e);
                 });
+                console.log(this.busqueda);
 
             }
 
             sumaProveedor(filtro:string){
-              this.serv.getEntradaProveedorFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getEntradaProveedorFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
             }
             sumaFecha(filtro:string){
-              this.serv.getEntradaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getEntradaFechaFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
@@ -149,19 +149,19 @@ export class EntradasComponent implements OnInit {
 
 
             promedioProveedor(filtrado:string){
-            this.serv.getEntradaProveedorFiltro(this.busqueda,filtrado).subscribe((e:any)=>{
+            this.serv.getEntradaProveedorFiltro(this.search.get("search").value,filtrado).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             promedioFecha(filtrado:string){
-            this.serv.getEntradaFechaFiltro(this.busqueda,filtrado).subscribe((e:any)=>{
+            this.serv.getEntradaFechaFiltro(this.search.get("search").value,filtrado).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             promedioProducto(filtrado:string){
-              this.serv.getEntradaProductoFiltro(this.busqueda,filtrado).subscribe((e:any)=>{
+              this.serv.getEntradaProductoFiltro(this.search.get("search").value,filtrado).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });
@@ -169,19 +169,19 @@ export class EntradasComponent implements OnInit {
             }
 
             conteoProveedor(filtro:string){
-            this.serv.getEntradaProveedorFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+            this.serv.getEntradaProveedorFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             conteoFecha(filtro:string){
-            this.serv.getEntradaFechaFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+            this.serv.getEntradaFechaFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
             this.sumatoria=e;
             console.log(e);
             });
             }
             conteoProducto(filtro:string){
-              this.serv.getEntradaProductoFiltro(this.busqueda,filtro).subscribe((e:any)=>{
+              this.serv.getEntradaProductoFiltro(this.search.get("search").value,filtro).subscribe((e:any)=>{
               this.sumatoria=e;
               console.log(e);
               });

@@ -12,6 +12,7 @@ import * as jspdf from 'jspdf';
 export class ProductosComponent implements OnInit {
   busqueda;any
   productos:any=[];
+  cargando: boolean = false;
   constructor(private serv:APIService, private router:Router) { }
 
   ngOnInit(): void {
@@ -23,12 +24,15 @@ export class ProductosComponent implements OnInit {
     })
   }
   capturar(){
+    this.cargando= true;
     htmlToImage.toPng(document.getElementById('producto'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
       pdf.addImage(dataUrl,'png',0,0,20.0,18.0);
       pdf.save("producto.pdf")
-    })
+    }).finally(()=>{
+      this.cargando = true;
+    });
   }
 
 }
