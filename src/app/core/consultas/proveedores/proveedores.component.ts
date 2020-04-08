@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { APIService } from './../../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
+import htmlToImage from 'html-to-image';
+import * as jspdf from 'jspdf';
 
 @Component({
   selector: 'app-proveedores',
@@ -21,6 +23,14 @@ export class ProveedoresComponent implements OnInit {
       
       
       console.log(e);
+    })
+  }
+  capturar(){
+    htmlToImage.toPng(document.getElementById('proveedor'))
+    .then(function (dataUrl){
+      let pdf= new jspdf('p','cm','a4');
+      pdf.addImage(dataUrl,'png',-3,0,25.0,15.0);
+      pdf.save("proveedor.pdf")
     })
   }
 

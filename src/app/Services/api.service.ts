@@ -119,7 +119,7 @@ getEntradaFecha(fecha:Date){
   return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_fecha/'+fecha);
 }
 getEntradaFechaFiltro(fecha:Date,filtro:string){
-  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_fecha/'+fecha+'&&'+filtro);
+  return this.cliente.get('https://localhost:44329/api/busquedas/obtener_entrada_fecha_filtro/'+fecha+'&&'+filtro);
 }
 
 getEntradaProducto(producto:string){

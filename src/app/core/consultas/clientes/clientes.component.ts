@@ -53,11 +53,11 @@ export class ClientesComponent implements OnInit {
     });
   }
   capturar(){
-    htmlToImage.toPng(document.getElementById('imprimir'))
+    htmlToImage.toPng(document.getElementById('cliente'))
     .then(function (dataUrl){
       let pdf= new jspdf('p','cm','a4');
-      pdf.addImage(dataUrl,'png',0,0,16.,15.0);
-      pdf.save("impresion.pdf")
+      pdf.addImage(dataUrl,'png',-1,0,20.0,11.0);
+      pdf.save("cliente.pdf")
     })
   }
  /* conteo(){

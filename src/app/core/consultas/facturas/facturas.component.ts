@@ -1,8 +1,11 @@
+
 import { Builder } from 'protractor';
 import { Router } from '@angular/router';
 import { APIService } from './../../../Services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import htmlToImage from 'html-to-image';
+import * as jspdf from 'jspdf';
 
 @Component({
   selector: 'app-facturas',
@@ -32,6 +35,15 @@ export class FacturasComponent implements OnInit {
     this.entrada=this.builder.group({
       proveedor:[''],
       producto:['']
+    })
+  }
+
+  capturar(){
+    htmlToImage.toPng(document.getElementById('factura'))
+    .then(function (dataUrl){
+      let pdf= new jspdf('p','cm','a4');
+      pdf.addImage(dataUrl,'png',0,0,18.0,18.0);
+      pdf.save("factura.pdf")
     })
   }
 
